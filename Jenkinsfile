@@ -8,14 +8,9 @@ pipeline {
             sh 'npm start'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
-            sh '''file=README.md
-if [ ! -e "$file" ]; then
-    echo "File does not exist"
-else 
-    echo "File exists"
-fi '''
+            sh '[ -f README.md ] && echo "File exist" || echo "File does not exist"'
           }
         }
       }
